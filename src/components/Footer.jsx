@@ -85,6 +85,20 @@ export default function Footer() {
           </p>
           <p className="font-mono text-[11px] text-mute">© {new Date().getFullYear()} DBMastery</p>
         </div>
+
+        <div className="mt-4 border-t border-line pt-4 text-center">
+          <p className="text-xs text-mute">
+            Created by{' '}
+            <a
+              href="https://hizbullah-khalifa.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-ink transition-colors hover:text-acc"
+            >
+              Hizbullah Khalifa Eng
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   )
