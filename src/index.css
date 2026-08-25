@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-night-950: #070b18;
+  --color-night-900: #0b1224;
+  --color-night-800: #111a2e;
+  --color-night-700: #1b2540;
+  --color-mongo: #00ed64;
+}
+
+/* Semantic theme colors — swapped via CSS variables */
+@theme inline {
+  --color-base: var(--bg);
+  --color-soft: var(--soft);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-mute: var(--mute);
+  --color-acc: var(--acc);
+  --color-acc2: var(--acc2);
+}
+
+:root {
+  --bg: #f6f8fb;
+  --soft: #edf1f7;
+  --card: #ffffff;
+  --line: #d9e1ec;
+  --ink: #0f172a;
+  --mute: #56677c;
+  --acc: #059669;
+  --acc2: #0891b2;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #070b18;
+  --soft: #0b1224;
+  --card: #0d1528;
+  --line: #1e2a44;
+  --ink: #e6edf7;
+  --mute: #93a1b8;
+  --acc: #34d399;
+  --acc2: #22d3ee;
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--acc) 30%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Slim scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--mute) 35%, transparent) transparent;
+}
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--mute) 35%, transparent);
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-track { background: transparent; }
+
+/* Subtle background grid used on heroes / CTAs */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--line) 60%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--line) 60%, transparent) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 20%, black 30%, transparent 75%);
+}
+
+.glow-acc {
+  box-shadow: 0 0 90px -18px color-mix(in oklab, var(--acc) 55%, transparent);
+}
+.glow-soft {
+  box-shadow: 0 24px 60px -28px rgb(2 8 23 / 0.45);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--acc), var(--acc2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Code editor surfaces stay dark in both themes (IDE aesthetic) */
+.code-surface { background: #0a1020; }
+.tok-kw   { color: #c4b5fd; }
+.tok-str  { color: #6ee7b7; }
+.tok-num  { color: #fbbf24; }
+.tok-com  { color: #64748b; font-style: italic; }
+.tok-fn   { color: #7dd3fc; }
+.tok-op   { color: #f0abfc; }
+.tok-punc { color: #94a3b8; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
